@@ -19,9 +19,12 @@ char	*exam_strdup(char *str)
 	dup = (char *)malloc(sizeof(char) * (exam_strlen(str) + 1));
 	if (!dup)
 		return (NULL);
-	i = -1;
-	while (str[++i])
+	i = 0;
+	while (str[i])
+	{
 		dup[i] = str[i];
+		i++;
+	}
 	dup[i] = '\0';
 	return (dup);
 }
@@ -31,6 +34,7 @@ char	*get_next_line(int fd)
 	char	*str;
 	char	c;
 	char	array[999999] = {0};
+	// this makes the compiler fill uninitialised elements with 0
 	int		bytes;
 	int		i;
 	
