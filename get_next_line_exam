@@ -1,0 +1,64 @@
+#include <stdlib.h>
+#include <unistd.h>
+
+int	exam_strlen(char *str)
+{
+	int	len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
+}
+
+char	*exam_strdup(char *str)
+{
+	char	*dup;
+	int		i;
+
+	dup = (char *)malloc(sizeof(char) * (exam_strlen(str) + 1));
+	if (!dup)
+		return (NULL);
+	i = -1;
+	while (str[++i])
+		dup[i] = str[i];
+	dup[i] = '\0';
+	return (dup);
+}
+
+char	*get_next_line(int fd)
+{
+	char	*str;
+	char	c;
+	char	array[999999] = {0};
+	int		bytes;
+	int		i;
+	
+	i = 0;
+	while ((bytes = read(fd, &c, 1)) > 0)
+	{
+		array[i++] = c;
+		if (c == '\n')
+			break ;
+	}
+	if (!array[0])
+		return (NULL);
+	str = exam_strdup(array);
+	return (str);
+}
+
+
+// FOR TESTING
+#include <fcntl.h>
+#include <stdio.h>
+int	main(void)
+{
+	int		fd;
+	int		i;
+
+	fd = open("gnltest.txt", O_RDONLY);
+	i = 10;
+	while (i--)
+	printf("%s", get_next_line(fd));
+	return (0);
+}
