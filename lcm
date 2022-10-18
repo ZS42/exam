@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+unsigned int    lcm(unsigned int a, unsigned int b)
+{
+    unsigned int lcm;
+    unsigned int i;
+    int c;
+
+    
+    if (a == 0 || b == 0)
+        lcm = 0;
+    if (a < b)
+        lcm = a;
+    else
+        lcm = b;
+    while (a > 0 && b > 0)
+    {
+        if (lcm % a == 0 && lcm % b == 0)
+            return (lcm);
+        if (a < b)
+        lcm += a;
+    else
+        lcm += b;
+    }
+    return (0);
+}
