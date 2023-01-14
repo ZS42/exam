@@ -46,7 +46,9 @@ int	main(int ac, char **av)
 	int	p;
 	int	j;
 
+// 	Dont want 0
 	i = 1;
+// 	should not work if ac >2 even though subject doesnt say it
 	if (ac == 2)
 	{
 		p = ft_atoi(av[1]);
