@@ -1,27 +1,20 @@
 #include <unistd.h>
 
-void	rev_bits(unsigned char octet)
+int	main(int ac, char **av)
 {
-	int	bits;
-	int	i;
+	int i;
 
-	bits = 8;
 	i = 0;
-	while (i < 8)
+	if (ac ==2)
 	{
-		if (octet & 128 >> i)
-			write(1, "0", 1);
-		else
-			write (1, "1", 1);
-		bits--;
+		while (av[1][i])
 		i++;
+		i--;
+		while (i >= 0)
+		{
+			write (1, &av[1][i], 1);
+			i--;
+		}
 	}
-}
-
-int	main()
-{
-	rev_bits(65);
 	write (1, "\n", 1);
-	rev_bits('H');
-	return (0);
 }
